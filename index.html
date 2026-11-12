@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>你能在爽剧里演谁 · 短剧角色试镜</title>
+<title>红果短剧试镜测试</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0908'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23C9A24B' font-family='serif'%3E角%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://miaoda.feishu.cn">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;900&amp;family=Noto+Sans+SC:wght@400;500&amp;display=swap">
@@ -25,6 +25,30 @@ body{
   color:var(--paper); font-family:var(--sans); line-height:1.65;
   -webkit-font-smoothing:antialiased;
 }
+
+/* ==========卡密登录页面样式========== */
+.pass-wrap{
+  position:fixed; inset:0; z-index:9999; min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:20px;
+  background:radial-gradient(1200px 700px at 50% -10%, #1b1610 0%, transparent 62%),var(--ink);
+}
+.pass-box{
+  background:#1a1a2e;padding:36px;border-radius:16px;border:1px solid var(--gold-dim);
+  width:90%;max-width:400px;text-align:center
+}
+.pass-box h2{color:var(--gold-hi);margin-bottom:8px;font-size:20px}
+.pass-box p{color:var(--ash);font-size:13px;margin-bottom:20px}
+#passInput{
+  width:100%;padding:14px;font-size:16px;border-radius:8px;border:none;outline:none;
+  text-align:center;background:#0f0f1a;color:#fff;margin-bottom:14px
+}
+#submitPass{
+  width:100%;padding:14px;background:linear-gradient(135deg,#c89b48,#e8c878);
+  color:#000;border:none;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer
+}
+#tip{color:#ff6b6b;margin-top:12px;font-size:13px;min-height:18px}
+
 .grain{
   position:fixed; inset:0; pointer-events:none; z-index:40; opacity:.45;
   background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
@@ -32,7 +56,6 @@ body{
 }
 .view{display:none; min-height:100vh; min-height:100svh; flex-direction:column; align-items:center; justify-content:center; padding:24px 18px 34px; position:relative; z-index:1}
 .view.on{display:flex}
-
 /* ============ 封面 ============ */
 .cover-frame{
   width:100%; max-width:430px; padding:32px 22px 26px; position:relative;
@@ -76,7 +99,6 @@ h1.cover-title{
   font-family:var(--serif); font-size:10px; letter-spacing:.3em; color:var(--gold);
   border:1px solid var(--gold-dim); padding:8px 5px; background:rgba(12,10,8,.9);
 }
-
 /* ============ 答题 ============ */
 #vQuiz{justify-content:flex-start; padding-top:20px}
 .qwrap{width:100%; max-width:460px; margin:0 auto; display:flex; flex-direction:column}
@@ -123,7 +145,6 @@ h1.cover-title{
 .btn-ghost:hover:not(:disabled){color:var(--gold-hi); border-color:var(--gold-dim)}
 .btn-ghost:disabled{opacity:.35; cursor:not-allowed}
 .qhint{font-size:11px; color:#6d665c; letter-spacing:.04em; text-align:right}
-
 /* ============ 抽卡 ============ */
 #vGacha{overflow:hidden}
 .rays{position:absolute; inset:0; z-index:0; opacity:0; transition:opacity .6s ease;
@@ -166,7 +187,6 @@ h1.cover-title{
 }
 .reel.hit{color:var(--gold-hi); font-size:18px; letter-spacing:.08em}
 .hidden{display:none}
-
 /* ============ 结果 ============ */
 #vResult{align-items:center; justify-content:flex-start; padding-top:22px}
 .res{width:100%; max-width:900px; display:grid; grid-template-columns:1fr; gap:20px}
@@ -230,7 +250,6 @@ h1.cover-title{
 .share-btns{display:flex; gap:10px; width:100%; max-width:340px}
 .share-btns a,.share-btns button{flex:1; min-height:48px; display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:14px}
 .share-btns a{font-family:var(--serif); letter-spacing:.16em; color:#0A0908; background:linear-gradient(100deg,#B98F3D,#EFD08A 45%,#C9A24B); border:0}
-
 @media (min-width:820px){
   .res{grid-template-columns:300px 1fr; align-items:start; gap:28px}
   .res-top{position:sticky; top:24px}
@@ -250,9 +269,21 @@ h1.cover-title{
 </style>
 </head>
 <body>
+
+<!-- =========卡密验证界面========= -->
+<div class="pass-wrap" id="passPage">
+  <div class="pass-box">
+    <h2>红果短剧试镜测试</h2>
+    <p>请输入专属访问卡密开始测试</p>
+    <input type="text" id="passInput" placeholder="输入卡密">
+    <button id="submitPass">进入试镜</button>
+    <div id="tip"></div>
+  </div>
+</div>
+
+<div id="mainApp" style="display:none;">
 <div class="grain" aria-hidden="true"></div>
 <button class="mute" id="muteBtn" type="button" aria-pressed="true"><i></i>音 效 开</button>
-
 <!-- ===== 视图：封面 ===== -->
 <section class="view on" id="vCover">
   <div class="cover-frame">
@@ -270,7 +301,6 @@ h1.cover-title{
     <p class="cover-print">本测试为娱乐向人格匹配，不构成任何专业评估</p>
   </div>
 </section>
-
 <!-- ===== 视图：答题 ===== -->
 <section class="view" id="vQuiz">
   <div class="qwrap">
@@ -293,7 +323,6 @@ h1.cover-title{
     </div>
   </div>
 </section>
-
 <!-- ===== 视图：抽卡结算 ===== -->
 <section class="view" id="vGacha">
   <div class="rays" id="rays" aria-hidden="true"></div>
@@ -313,7 +342,6 @@ h1.cover-title{
     <button class="btn-gold hidden" id="toResult" style="max-width:300px">查 看 完 整 档 案</button>
   </div>
 </section>
-
 <!-- ===== 视图：角色档案 ===== -->
 <section class="view" id="vResult">
   <div class="res">
@@ -362,8 +390,6 @@ h1.cover-title{
     </div>
   </div>
 </section>
-
-
 <div class="share" id="shareModal" aria-hidden="true">
   <p class="share-tip">长按图片保存到相册，或点下面按钮下载</p>
   <img id="shareImg" alt="角色分享图">
@@ -372,8 +398,43 @@ h1.cover-title{
     <button class="btn-ghost" id="shareClose" type="button">关 闭</button>
   </div>
 </div>
+</div>
 
 <script>
+// ============卡密配置，在这里增删卡密============
+const validKeys = ["a001","a002","a003","a004","a005","a006","a007","a008","a009","a010"];
+const passInput = document.getElementById("passInput");
+const submitPass = document.getElementById("submitPass");
+const tip = document.getElementById("tip");
+const passPage = document.getElementById("passPage");
+const mainApp = document.getElementById("mainApp");
+
+window.onload = function(){
+  if(localStorage.getItem("hasPassed") === "yes"){
+    passPage.style.display = "none";
+    mainApp.style.display = "block";
+  }
+};
+
+submitPass.onclick = function(){
+  let k = passInput.value.trim();
+  if(!k){
+    tip.innerText = "请输入卡密";
+    return;
+  }
+  if(validKeys.includes(k)){
+    localStorage.setItem("hasPassed", "yes");
+    passPage.style.display = "none";
+    mainApp.style.display = "block";
+  }else{
+    tip.innerText = "卡密错误，请核对后重新输入";
+  }
+};
+passInput.onkeydown = function(e){
+  if(e.key === "Enter") submitPass.click();
+};
+
+// ============下面全部为原短剧业务逻辑============
 const IMG = {
 r01:'assets/r01.jpg',
 r02:'assets/r02.jpg',
@@ -406,7 +467,6 @@ r28:'assets/r28.jpg',
 r29:'assets/r29.jpg',
 r30:'assets/r30.jpg'
 };
-
 const ROLES = [
 {id:'r01',g:'m',name:'重生逆袭男主',pos:'男主 · 复仇翻盘位',rarity:'SSR',tags:['重生','打脸','隐忍蓄力'],
  prof:{amb:8,pat:9,rth:7,wrm:4,wit:8,ease:2,risk:5,show:4},
@@ -589,7 +649,6 @@ const ROLES = [
  ending:'气运散尽，他成了路边一个谁也不认识的人。',
  line:'“这剧本，本来是写给我的。”'}
 ];
-
 const QS = [
 {q:'先做个试镜登记：你的性别是？',l:'剧组按这一项分配角色池',opts:[
  {t:'男',g:'m'},
@@ -646,502 +705,9 @@ const QS = [
  {t:'反手一句怼回去',w:{show:2,wit:1}},
  {t:'不理，回头让他自己跪下',w:{pat:2,rth:1}},
  {t:'脸上不动，心里记一笔',w:{pat:2,wit:1}}]},
-{q:'关键道具落进你手里，你会？',l:'编剧在等你做决定',opts:[
- {t:'立刻用掉，机会只有一次',w:{risk:2,amb:1}},
- {t:'收起来，当最后一张底牌',w:{pat:2,wit:1}},
- {t:'拿去换资源，换得更值',w:{wit:2,amb:1}},
- {t:'送给更需要它的人',w:{wrm:2,ease:1}}]},
-{q:'你最想演哪一种戏？',l:'选一个你最想被观众记住的段落',opts:[
- {t:'隐忍十年，一朝翻身',w:{pat:2,amb:1}},
- {t:'全程高能开挂，一路平推',w:{amb:2,risk:1}},
- {t:'群像里最亮的那一下',w:{show:2,wrm:1}},
- {t:'温柔守着一个人到最后',w:{wrm:2,pat:1}}]},
-{q:'这条感情线，你希望怎么走？',l:'爽剧也要谈恋爱',opts:[
- {t:'双向奔赴，谁也不欠谁',w:{wrm:2,ease:1}},
- {t:'强强对撞，互相拿捏',w:{amb:2,show:1}},
- {t:'虐恋反转，先伤后甜',w:{rth:2,wrm:1}},
- {t:'这一季我不需要爱情',w:{ease:2,amb:1}}]},
-{q:'你在剧里的危险程度？',l:'弹幕会根据这题给你起外号',opts:[
- {t:'全场最狠那个，别惹我',w:{rth:2,amb:1}},
- {t:'看着人畜无害，其实不好惹',w:{show:2,wit:1}},
- {t:'有底线，不乱来',w:{pat:2,wrm:1}},
- {t:'完全不危险，只想好好过',w:{wrm:2,ease:1}}]},
-{q:'危机来临，你会站在哪个位置？',l:'群戏调度看你这一票',opts:[
- {t:'冲在最前面',w:{risk:2,amb:1}},
- {t:'站在后面看全局',w:{ease:2,wit:1}},
- {t:'提前把局都布好了',w:{pat:2,wit:1}},
- {t:'先把身边的人护住',w:{wrm:2,pat:1}}]},
-{q:'你最可能栽在哪一件事上？',l:'反派会从这一题下手',opts:[
- {t:'太相信人',w:{wrm:2,pat:1}},
- {t:'太急，总想一步到位',w:{risk:2,show:1}},
- {t:'树敌太多，收不住',w:{rth:2,show:1}},
- {t:'懒得争，被人捡了便宜',w:{ease:2,pat:1}}]},
-{q:'要不要给你加一层“马甲”？',l:'身份越多，反转越多',opts:[
- {t:'十七层，掉一层还有一层',w:{show:2,wit:1}},
- {t:'低调一层就够用',w:{pat:2,wit:1}},
- {t:'我没什么秘密',w:{wrm:2,ease:1}},
- {t:'我藏得比谁都深',w:{rth:2,pat:1}}]},
-{q:'弹幕会记住你哪句话？',l:'这句会成为你的名场面',opts:[
- {t:'“记住今天。”',w:{amb:2,show:1}},
- {t:'“我劝你善良。”',w:{wrm:2,pat:1}},
- {t:'“都别动。”',w:{rth:2,show:1}},
- {t:'“我早就算到了。”',w:{wit:2,ease:1}}]},
-{q:'你最怕哪一种结局？',l:'编剧最擅长写你最怕的',opts:[
- {t:'没人记得我做过什么',w:{show:2,amb:1}},
- {t:'众叛亲离，一个人收场',w:{wrm:2,pat:1}},
- {t:'白忙一场，什么都没留下',w:{amb:2,risk:1}},
- {t:'被最亲的人卖了',w:{wrm:2,wit:1}}]},
-{q:'在这部群像戏里，你占多少比重？',l:'决定你是主线还是暗线',opts:[
- {t:'绝对主角，镜头跟着我走',w:{amb:2,show:1}},
- {t:'关键的那一个，不多但重要',w:{wrm:2,wit:1}},
- {t:'幕后的那只手',w:{wit:2,pat:1}},
- {t:'看戏的见证者',w:{ease:2,show:1}}]},
-{q:'你对“规则”的态度？',l:'爽剧的分水岭',opts:[
- {t:'规则就是用来破的',w:{rth:2,risk:1}},
- {t:'规则是保护，守住了才安全',w:{pat:2,wrm:1}},
- {t:'规则是工具，看怎么用',w:{wit:2,amb:1}},
- {t:'没想过，走到哪算哪',w:{ease:2}}]},
-{q:'你的成长曲线更像哪种？',l:'制作人会按这个给你排集数',opts:[
- {t:'一步登天，开局即巅峰',w:{risk:2,amb:1}},
- {t:'稳扎稳打，一级一级往上',w:{pat:2,wit:1}},
- {t:'前半惨到不忍看，后半爽到不敢信',w:{rth:2,pat:1}},
- {t:'平平淡淡，但一直挺好',w:{ease:2,wrm:1}}]},
-{q:'如果编剧要把你写死，你希望怎么走？',l:'这一题决定你的名场面',opts:[
- {t:'为护住一个人而死',w:{wrm:2,rth:1}},
- {t:'抱着秘密走，谁也别想知道',w:{pat:2,wit:1}},
- {t:'大笑离场，一句狠话收尾',w:{ease:2,show:1}},
- {t:'把所有人一起带走',w:{rth:2,show:1}}]},
-{q:'你的“爽点”主要靠什么？',l:'观众为你鼓掌的原因',opts:[
- {t:'实力压制，谁都打不过',w:{amb:2,rth:1}},
- {t:'智商碾压，算在别人前面',w:{wit:2,ease:1}},
- {t:'狠辣果决，一秒不拖',w:{rth:2,amb:1}},
- {t:'情感共鸣，把人看哭',w:{wrm:2,show:1}}]},
-{q:'团队里你通常是？',l:'给你安排队友的方式',opts:[
- {t:'带队的那个',w:{amb:2,wrm:1}},
- {t:'出主意的那个',w:{wit:2,pat:1}},
- {t:'扛事的那个，出事我上',w:{wrm:2,pat:1}},
- {t:'摸鱼的那个，但运气好',w:{ease:2,show:1}}]},
-{q:'你更愿意成为哪一种人？',l:'这是整部戏的内核',opts:[
- {t:'万人敬仰',w:{show:2,amb:1}},
- {t:'万人畏惧',w:{rth:2,show:1}},
- {t:'一人偏爱',w:{wrm:2,ease:1}},
- {t:'无人打扰',w:{ease:2,pat:1}}]},
-{q:'你的抗压能力？',l:'连拍三十集，得看这个',opts:[
- {t:'越压越猛，压力就是燃料',w:{rth:2,pat:1}},
- {t:'冷静复盘，一条条拆',w:{wit:2,pat:1}},
- {t:'找人聊聊，缓过来再说',w:{wrm:2,ease:1}},
- {t:'直接躺平，随它去',w:{ease:2,risk:1}}]},
-{q:'最后一集，镜头停在哪儿？',l:'这是你的收尾画面',opts:[
- {t:'你走上高台，所有人抬头',w:{amb:2,show:1}},
- {t:'你转身离开，不回头',w:{pat:2,ease:1}},
- {t:'你坐下来，笑着吃一碗面',w:{ease:2,wrm:1}},
- {t:'你护住一个人，挡住所有风',w:{wrm:2,rth:1}}]},
-{q:'如果这部剧有第二季，你会？',l:'制作人已经在等你的答案',opts:[
- {t:'主角还是我',w:{amb:2,show:1}},
- {t:'换个身份回来，从头再来一遍',w:{show:2,wit:1}},
- {t:'我不出现了，让他们猜',w:{ease:2,pat:1}},
- {t:'我成了传说，只在台词里出现',w:{rth:2,show:1}}]}
-];
+{q:'关键道具落进你手里，你会？',l:'编剧在等你做决定',
 
-/* ================= 交互逻辑 ================= */
-const $ = (id)=>document.getElementById(id);
-const LETTERS = ['A','B','C','D'];
-const DIMS = ['amb','pat','rth','wrm','wit','ease','risk','show'];
-const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const state = { i:0, ans:[], gender:'m', role:null, match:0, lock:false, spinTimer:null };
-const RARITY_BOOST = { SSR:0, SR:0.028, R:0.055 };
-const timers = [];
 
-const strip = $('strip');
-for (let k=0;k<QS.length;k++){ strip.appendChild(document.createElement('span')); }
+   
 
-function show(view){
-  ['vCover','vQuiz','vGacha','vResult'].forEach(v=>$(v).classList.toggle('on', v===view));
-  $('muteBtn').classList.toggle('hide', view==='vResult');
-  window.scrollTo(0,0);
-}
-
-/* ================= 音效（WebAudio 合成，首次点击后创建） ================= */
-let AC = null, soundOn = true, lastBlip = 0;
-function audioCtx(){
-  if (!AC){
-    try { AC = new (window.AudioContext || window.webkitAudioContext)(); }
-    catch(e){ AC = null; }
-  }
-  if (AC && AC.state === 'suspended') AC.resume();
-  return AC;
-}
-function tone(a, type, f1, f2, dur, gain){
-  const t = a.currentTime;
-  const o = a.createOscillator(), g = a.createGain();
-  o.type = type;
-  o.frequency.setValueAtTime(f1, t);
-  if (f2 && f2 !== f1) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
-  g.gain.setValueAtTime(gain, t);
-  g.gain.exponentialRampToValueAtTime(0.0008, t + dur);
-  o.connect(g); g.connect(a.destination);
-  o.start(t); o.stop(t + dur + 0.02);
-}
-function sfx(kind){
-  if (!soundOn) return;
-  const a = audioCtx(); if (!a) return;
-  if (kind === 'tick') tone(a, 'sine', 940, 680, 0.06, 0.05);
-  else if (kind === 'blip') tone(a, 'sine', 1240, 1240, 0.05, 0.026);
-  else if (kind === 'hit'){ tone(a, 'triangle', 523, 1046, 0.42, 0.16); tone(a, 'sine', 1568, 1568, 0.52, 0.07); }
-  else if (kind === 'flip') tone(a, 'sine', 340, 130, 0.22, 0.10);
-  else if (kind === 'copy'){ tone(a, 'sine', 880, 880, 0.09, 0.06);
-    setTimeout(()=>{ if (soundOn){ const b = audioCtx(); if (b) tone(b, 'sine', 1320, 1320, 0.09, 0.05); } }, 110); }
-}
-
-/* ================= 分享图 ================= */
-function wrapText(x, text, cx, y, maxW, lh){
-  const chars = String(text).split('');
-  let line = '', lines = [];
-  chars.forEach(ch=>{
-    const t = line + ch;
-    if (x.measureText(t).width > maxW && line){ lines.push(line); line = ch; }
-    else line = t;
-  });
-  if (line) lines.push(line);
-  lines.forEach((l,i)=> x.fillText(l, cx, y + i*lh));
-  return y + (lines.length-1)*lh;
-}
-async function makeShareCard(){
-  const r = state.role;
-  const W = 1080, H = 1440;
-  const c = document.createElement('canvas'); c.width = W; c.height = H;
-  const x = c.getContext('2d');
-  try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch(e){}
-  const SERIF = '"Noto Serif SC","Songti SC",serif';
-  const SANS = '"Noto Sans SC","PingFang SC",sans-serif';
-  x.textAlign = 'center';
-
-  const bg = x.createLinearGradient(0,0,W,H);
-  bg.addColorStop(0,'#191309'); bg.addColorStop(.45,'#0c0b09'); bg.addColorStop(1,'#161009');
-  x.fillStyle = bg; x.fillRect(0,0,W,H);
-  const vg = x.createRadialGradient(W/2,H*0.4,120,W/2,H*0.4,H*0.78);
-  vg.addColorStop(0,'rgba(201,162,75,.12)'); vg.addColorStop(.62,'rgba(0,0,0,0)'); vg.addColorStop(1,'rgba(0,0,0,.6)');
-  x.fillStyle = vg; x.fillRect(0,0,W,H);
-
-  x.strokeStyle = 'rgba(201,162,75,.6)'; x.lineWidth = 3; x.strokeRect(46,46,W-92,H-92);
-  x.strokeStyle = 'rgba(201,162,75,.22)'; x.lineWidth = 1; x.strokeRect(68,68,W-136,H-136);
-
-  x.fillStyle = '#C9A24B'; x.font = '500 28px '+SERIF;
-  x.fillText('红 果 爽 剧 · 角 色 试 镜', W/2, 150);
-
-  const rw = 168, rh = 56, rx = (W-rw)/2, ry = 196;
-  x.fillStyle = '#C9A24B'; x.fillRect(rx, ry, rw, rh);
-  x.fillStyle = '#0A0908'; x.font = '900 30px '+SERIF;
-  x.fillText(r.rarity, W/2, ry + 39);
-
-  const ng = x.createLinearGradient(0,300,0,440);
-  ng.addColorStop(0,'#F6E3B4'); ng.addColorStop(.62,'#D9B565'); ng.addColorStop(1,'#8f7129');
-  x.fillStyle = ng; x.font = '900 94px '+SERIF;
-  x.fillText(r.name, W/2, 402);
-
-  x.fillStyle = '#9C9488'; x.font = '400 31px '+SANS;
-  x.fillText('定位 · ' + r.pos, W/2, 468);
-
-  x.strokeStyle = 'rgba(201,162,75,.28)'; x.lineWidth = 1;
-  x.beginPath(); x.moveTo(210, 528); x.lineTo(W-210, 528); x.stroke();
-
-  x.fillStyle = '#EFD08A'; x.font = '500 30px '+SANS;
-  x.fillText(r.tags.join('   /   '), W/2, 596);
-
-  x.fillStyle = '#9C9488'; x.font = '400 27px '+SANS;
-  x.fillText('角色匹配度 ' + state.match + '%', W/2, 648);
-
-  x.save();
-  x.translate(W/2, 764); x.rotate(Math.PI/4);
-  x.strokeStyle = 'rgba(201,162,75,.55)'; x.lineWidth = 2; x.strokeRect(-52,-52,104,104);
-  x.strokeStyle = 'rgba(201,162,75,.25)'; x.lineWidth = 1; x.strokeRect(-42,-42,84,84);
-  x.restore();
-  x.fillStyle = '#EFD08A'; x.font = '900 46px '+SERIF;
-  x.fillText('角', W/2, 781);
-
-  x.fillStyle = '#EDE4D2'; x.font = '600 42px '+SERIF;
-  const y1 = wrapText(x, r.line, W/2, 952, 800, 66);
-
-  x.fillStyle = '#9C9488'; x.font = '400 28px '+SANS;
-  wrapText(x, '结局：' + r.ending, W/2, Math.max(1096, y1 + 92), 830, 46);
-
-  x.fillStyle = '#6d665c'; x.font = '400 25px '+SANS;
-  x.fillText('你能在爽剧里演谁 · 30 题角色试镜', W/2, H - 108);
-
-  const url = c.toDataURL('image/png');
-  $('shareImg').src = url;
-  $('shareDownload').href = url;
-  $('shareModal').classList.add('on');
-  $('shareModal').setAttribute('aria-hidden','false');
-  sfx('copy');
-}
-function markStrip(){
-  Array.from(strip.children).forEach((s,k)=>s.classList.toggle('f', state.ans[k]!=null));
-}
-
-function renderQ(){
-  const q = QS[state.i];
-  $('epNow').textContent = state.i+1;
-  $('qNo').textContent = 'SCENE ' + String(state.i+1).padStart(2,'0');
-  $('qText').textContent = q.q;
-  $('qLead').textContent = q.l || '选一个最像你的反应';
-  const box = $('opts');
-  box.innerHTML = '';
-  q.opts.forEach((o,k)=>{
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'opt' + (state.ans[state.i]===k ? ' chosen' : '');
-    const idx = document.createElement('span'); idx.className='idx'; idx.textContent=LETTERS[k]||'';
-    const txt = document.createElement('span'); txt.className='txt'; txt.textContent=o.t;
-    b.appendChild(idx); b.appendChild(txt);
-    b.addEventListener('click', ()=>choose(k));
-    box.appendChild(b);
-  });
-  $('backBtn').disabled = (state.i===0);
-  markStrip();
-}
-
-function choose(k){
-  if (state.lock) return;
-  state.lock = true;
-  state.ans[state.i] = k;
-  const btns = Array.from($('opts').children);
-  btns.forEach((b,idx)=>b.classList.toggle('chosen', idx===k));
-  markStrip();
-  sfx('tick');
-  setTimeout(()=>{
-    state.lock = false;
-    if (state.i < QS.length-1){
-      state.i++;
-      renderQ();
-    } else {
-      compute();
-      show('vGacha');
-      playGacha();
-    }
-  }, RM ? 0 : 190);
-}
-
-function compute(){
-  const u = {};
-  DIMS.forEach(d=>u[d]=0);
-  let gender = 'm';
-  state.ans.forEach((k,qi)=>{
-    const o = QS[qi] && QS[qi].opts[k];
-    if (!o) return;
-    if (o.g) gender = o.g;
-    if (o.w) for (const key in o.w) u[key] += o.w[key];
-  });
-  state.gender = gender;
-  const pool = ROLES.filter(r=>r.g===gender);
-  let best = null, bestS = -Infinity, bestCorr = 0;
-  const maxU = Math.max(1, ...DIMS.map(d=>u[d]));
-  const ua = DIMS.map(d=>u[d]||0);
-  const mu = ua.reduce((a,b)=>a+b,0) / DIMS.length;
-  const ca = ua.map(v=>v-mu);
-  const na = ca.reduce((a,b)=>a+b*b,0);
-  pool.forEach(r=>{
-    const rb = DIMS.map(d=>r.prof[d]||0);
-    const mr = rb.reduce((a,b)=>a+b,0) / DIMS.length;
-    const cb = rb.map(v=>v-mr);
-    let dot=0, nb=0;
-    for (let i=0;i<DIMS.length;i++){ dot += ca[i]*cb[i]; nb += cb[i]*cb[i]; }
-    const corr = (na && nb) ? dot / (Math.sqrt(na)*Math.sqrt(nb)) : 0;
-    let top = 'amb';
-    DIMS.forEach(d=>{ if ((r.prof[d]||0) > (r.prof[top]||0)) top=d; });
-    const bonus = ((u[top]||0) / maxU) * 0.15;
-    const s = corr * 0.82 + bonus + (RARITY_BOOST[r.rarity] || 0);
-    if (s > bestS){ bestS = s; bestCorr = corr; best = r; }
-  });
-  state.role = best || pool[0] || ROLES[0];
-  state.match = Math.max(72, Math.min(98, Math.round(74 + bestCorr * 26)));
-}
-
-function clearGacha(){
-  timers.forEach(t=>clearTimeout(t));
-  timers.length = 0;
-  if (state.spinTimer) { clearTimeout(state.spinTimer); state.spinTimer = null; }
-}
-
-function playGacha(){
-  clearGacha();
-  const role = state.role;
-  const pool = ROLES.filter(r=>r.g===state.gender);
-  const stage = $('gStage'), reel = $('reel'), rays = $('rays'),
-        card = $('card3d'), flare = $('flare'), btn = $('toResult');
-
-  card.classList.remove('flip');
-  rays.classList.remove('on');
-  flare.classList.remove('on');
-  btn.classList.add('hidden');
-  reel.classList.remove('hit');
-  reel.textContent = '—';
-  stage.textContent = '读取你的三十次选择…';
-  rays.classList.add('on');
-  rays.style.opacity = '.26';
-  $('faceImg').src = IMG[role.id];
-  $('faceImg').alt = role.name + ' 角色画像';
-  $('rarity').textContent = role.rarity;
-
-  if (RM){
-    rays.classList.add('on');
-    card.classList.add('flip');
-    stage.textContent = '本次试镜结果';
-    reel.textContent = role.name;
-    reel.classList.add('hit');
-    btn.classList.remove('hidden');
-    return;
-  }
-
-  let delay = 65;
-  const tick = () => {
-    reel.textContent = pool[Math.floor(Math.random()*pool.length)].name;
-    if (delay > 130 && Date.now() - lastBlip > 130){ lastBlip = Date.now(); sfx('blip'); }
-    delay = Math.min(delay * 1.16, 330);
-    state.spinTimer = setTimeout(tick, delay);
-  };
-  tick();
-
-  timers.push(setTimeout(()=>{ stage.textContent = '在三十个人设里做一次匹配…'; }, 950));
-  timers.push(setTimeout(()=>{ stage.textContent = '命定角色，正在显影…'; }, 1950));
-  timers.push(setTimeout(()=>{
-    if (state.spinTimer) { clearTimeout(state.spinTimer); state.spinTimer = null; }
-    reel.textContent = role.name;
-    reel.classList.add('hit');
-    flare.classList.add('on');
-    rays.style.opacity = '';
-    sfx('hit');
-  }, 3080));
-  timers.push(setTimeout(()=>{
-    card.classList.add('flip');
-    stage.textContent = '本次试镜结果';
-    btn.classList.remove('hidden');
-    sfx('flip');
-  }, 3520));
-}
-
-function renderResult(){
-  const r = state.role;
-  $('rBadge').textContent = r.rarity;
-  $('rImg').src = IMG[r.id];
-  $('rImg').alt = r.name + ' 角色画像';
-  $('rName').textContent = r.name;
-  $('rPos').textContent = '定位：' + r.pos + '　·　匹配度 ' + state.match + '%';
-  const tags = $('rTags');
-  tags.innerHTML = '';
-  r.tags.forEach(t=>{
-    const s = document.createElement('span');
-    s.textContent = t;
-    tags.appendChild(s);
-  });
-  $('rSetting').textContent = r.setting;
-  $('rEnding').textContent = r.ending;
-  $('rLine').textContent = r.line;
-
-  const acts = $('rActs');
-  acts.innerHTML = '';
-  const actNames = ['开场','中段','高潮'];
-  r.acts.forEach((a,k)=>{
-    const wrap = document.createElement('div');
-    wrap.className = 'act';
-    const dot = document.createElement('span');
-    dot.className = 'dot';
-    dot.textContent = actNames[k] || ('第' + (k+1) + '段');
-    const body = document.createElement('div');
-    body.className = 'body';
-    body.textContent = a;
-    wrap.appendChild(dot); wrap.appendChild(body);
-    acts.appendChild(wrap);
-  });
-
-  const pool = ROLES.filter(x=>x.g===state.gender && x.id!==r.id);
-  const idx = Math.max(0, ROLES.findIndex(x=>x.id===r.id));
-  const row = $('rOthers');
-  row.innerHTML = '';
-  for (let k=0;k<Math.min(4,pool.length);k++){
-    const p = pool[(idx + k*2) % pool.length];
-    const img = document.createElement('img');
-    img.src = IMG[p.id];
-    img.alt = p.name;
-    row.appendChild(img);
-  }
-  $('copyTip').textContent = '';
-}
-
-function buildText(){
-  const r = state.role;
-  const acts = r.acts.map((a,k)=>'（'+(k+1)+'）'+a).join('\n');
-  return [
-    '【短剧角色试镜 · 我的命定角色】',
-    '角色：' + r.name + '（' + r.rarity + '）',
-    '定位：' + r.pos,
-    '标签：' + r.tags.join(' / '),
-    '人物设定：' + r.setting,
-    '剧情线：',
-    acts,
-    '结局：' + r.ending,
-    '专属台词：' + r.line,
-    '——来自「你能在爽剧里演谁 · 30题角色试镜」'
-  ].join('\n');
-}
-
-function copyResult(){
-  const text = buildText();
-  const ok = ()=>{
-    $('copyTip').textContent = '已复制，可以直接发朋友圈或小红书';
-    sfx('copy');
-    setTimeout(()=>{ $('copyTip').textContent=''; }, 2600);
-  };
-  if (navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(ok).catch(()=>fallbackCopy(text, ok));
-  } else {
-    fallbackCopy(text, ok);
-  }
-}
-function fallbackCopy(text, cb){
-  const ta = document.createElement('textarea');
-  ta.value = text;
-  ta.setAttribute('readonly','');
-  ta.style.position = 'fixed';
-  ta.style.top = '-1000px';
-  document.body.appendChild(ta);
-  ta.select();
-  try { document.execCommand('copy'); cb(); }
-  catch(e){ $('copyTip').textContent = '复制失败，请长按选中文字手动复制'; }
-  document.body.removeChild(ta);
-}
-
-function reset(){
-  clearGacha();
-  state.i = 0; state.ans = []; state.role = null; state.lock = false;
-  renderQ();
-  show('vQuiz');
-}
-
-$('startBtn').addEventListener('click', reset);
-$('backBtn').addEventListener('click', ()=>{
-  if (state.lock || state.i===0) return;
-  state.i--;
-  renderQ();
-});
-$('toResult').addEventListener('click', ()=>{
-  renderResult();
-  show('vResult');
-});
-$('copyBtn').addEventListener('click', copyResult);
-$('shareBtn').addEventListener('click', ()=>{ makeShareCard(); });
-$('shareClose').addEventListener('click', ()=>{ $('shareModal').classList.remove('on'); $('shareModal').setAttribute('aria-hidden','true'); });
-$('muteBtn').addEventListener('click', function(){
-  soundOn = !soundOn;
-  this.innerHTML = '<i></i>' + (soundOn ? '音 效 开' : '音 效 关');
-  this.classList.toggle('off', !soundOn);
-  this.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
-  if (soundOn) sfx('tick');
-});
-$('againBtn').addEventListener('click', reset);
-$('homeBtn').addEventListener('click', ()=>{ clearGacha(); show('vCover'); });
-
-renderQ();
-</script>
-</body>
-</html>
+ 
