@@ -706,8 +706,338 @@ const QS = [
  {t:'不理，回头让他自己跪下',w:{pat:2,rth:1}},
  {t:'脸上不动，心里记一笔',w:{pat:2,wit:1}}]},
 {q:'关键道具落进你手里，你会？',l:'编剧在等你做决定',
+// 补全第12题
+{q:'关键道具落进你手里，你会？',l:'编剧在等你做决定',opts:[
+ {t:'立刻用掉，机会只有一次',w:{risk:2,amb:1}},
+ {t:'收起来，当最后一张底牌',w:{pat:2,wit:1}},
+ {t:'拿去换资源，换得更值',w:{wit:2,amb:1}},
+ {t:'送给更需要它的人',w:{wrm:2,ease:1}}]},
+{q:'你最想演哪一种戏？',l:'选一个你最想被观众记住的段落',opts:[
+ {t:'隐忍十年，一朝翻身',w:{pat:2,amb:1}},
+ {t:'全程高能开挂，一路平推',w:{amb:2,risk:1}},
+ {t:'群像里最亮的那一下',w:{show:2,wrm:1}},
+ {t:'温柔守着一个人到最后',w:{wrm:2,pat:1}}]},
+{q:'这条感情线，你希望怎么走？',l:'爽剧也要谈恋爱',opts:[
+ {t:'双向奔赴，谁也不欠谁',w:{wrm:2,ease:1}},
+ {t:'强强对撞，互相拿捏',w:{amb:2,show:1}},
+ {t:'虐恋反转，先伤后甜',w:{rth:2,wrm:1}},
+ {t:'这一季我不需要爱情',w:{ease:2,amb:1}}]},
+{q:'你在剧里的危险程度？',l:'弹幕会根据这题给你起外号',opts:[
+ {t:'全场最狠那个，别惹我',w:{rth:2,amb:1}},
+ {t:'看着人畜无害，其实不好惹',w:{show:2,wit:1}},
+ {t:'有底线，不乱来',w:{pat:2,wrm:1}},
+ {t:'有我在的地方就有危险',w:{risk:2,rth:1}}]},
+{q:'剧组给你安排一个队友，你要哪种？',l:'搭档决定你走多远',opts:[
+ {t:'忠心能干，我说啥他干啥',w:{wrm:2,pat:1}},
+ {t:'智商在线，帮我补漏洞',w:{wit:2,pat:1}},
+ {t:'气场强，能跟我打配合',w:{show:2,amb:1}},
+ {t:'运气好，总能逢凶化吉',w:{ease:2,wrm:1}}]},
+{q:'遇到大反派，你第一反应？',l:'正面硬刚还是迂回',opts:[
+ {t:'直接正面刚，谁怕谁',w:{rth:2,risk:1}},
+ {t:'先摸清他的底牌再动手',w:{wit:2,pat:1}},
+ {t:'联合其他人一起搞他',w:{wrm:2,show:1}},
+ {t:'先躲一波，等他露出破绽',w:{pat:2,ease:1}}]},
+{q:'你最不能接受哪种结局？',l:'观众会因为这个给你写差评',opts:[
+ {t:'好人没好报，憋屈',w:{rth:2,wrm:1}},
+ {t:'赢了天下输了她',w:{wrm:2,pat:1}},
+ {t:'稀里糊涂就结束了',w:{wit:2,show:1}},
+ {t:'为了正义牺牲自己',w:{amb:2,rth:1}}]},
+{q:'你的社交风格更像？',l:'剧组会给你安排对应的配角戏',opts:[
+ {t:'话少，一句顶一万句',w:{pat:2,show:1}},
+ {t:'自来熟，到哪都有朋友',w:{wrm:2,ease:1}},
+ {t:'表面客气，心里门清',w:{wit:2,pat:1}},
+ {t:'不喜欢废话，直接办事',w:{amb:2,risk:1}}]},
+{q:'如果给你一个超能力，你要？',l:'爽剧标配金手指',opts:[
+ {t:'读心术，看穿所有人',w:{wit:2,ease:1}},
+ {t:'预知未来，提前布局',w:{pat:2,wit:1}},
+ {t:'超强战力，谁也打不过',w:{rth:2,risk:1}},
+ {t:'好运爆棚，逢凶化吉',w:{ease:2,wrm:1}}]},
+{q:'你最擅长的是？',l:'你的核心竞争力',opts:[
+ {t:'忍耐力，能熬',w:{pat:2,rth:1}},
+ {t:'观察力，细节控',w:{wit:2,pat:1}},
+ {t:'行动力，说干就干',w:{risk:2,amb:1}},
+ {t:'共情力，能打动别人',w:{wrm:2,ease:1}}]},
+{q:'被人误会了，你会？',l:'这一段决定弹幕站谁',opts:[
+ {t:'不解释，用结果证明',w:{pat:2,amb:1}},
+ {t:'当场把话说清楚',w:{show:2,wit:1}},
+ {t:'找信任的人帮忙澄清',w:{wrm:2,ease:1}},
+ {t:'懒得解释，爱咋咋地',w:{ease:2,rth:1}}]},
+{q:'你希望你的角色标签是？',l:'观众记住你的关键词',opts:[
+ {t:'狠人',w:{rth:2,show:1}},
+ {t:'聪明',w:{wit:2,pat:1}},
+ {t:'温柔',w:{wrm:2,ease:1}},
+ {t:'幸运',w:{ease:2,wrm:1}}]},
+{q:'剧组要拍一场哭戏，你怎么演？',l:'考验演技的时候到了',opts:[
+ {t:'隐忍落泪，不哭出声',w:{pat:2,wrm:1}},
+ {t:'当场崩溃，情绪拉满',w:{rth:2,show:1}},
+ {t:'冷笑一声，眼泪憋回去',w:{wit:2,amb:1}},
+ {t:'红了眼眶，转头就走',w:{ease:2,wrm:1}}]},
+{q:'你最想拥有哪种身份？',l:'你的社会地位',opts:[
+ {t:'隐形大佬，没人知道你多强',w:{wit:2,pat:1}},
+ {t:'万众瞩目，全场焦点',w:{show:2,amb:1}},
+ {t:'有钱有势，说话管用',w:{amb:2,pat:1}},
+ {t:'自由自在，没人管得着',w:{ease:2,risk:1}}]},
+{q:'遇到选择的时候，你更倾向？',l:'你的决策风格',opts:[
+ {t:'算清楚利弊再选',w:{wit:2,pat:1}},
+ {t:'跟着直觉走',w:{risk:2,ease:1}},
+ {t:'问身边人的意见',w:{wrm:2,ease:1}},
+ {t:'选最难的那条路',w:{amb:2,rth:1}}]},
+{q:'你觉得自己更像？',l:'最后一题，定角色了',opts:[
+ {t:'狼，隐忍、记仇、一击必中',w:{pat:2,rth:1}},
+ {t:'狐狸，聪明、灵活、会周旋',w:{wit:2,ease:1}},
+ {t:'狗，忠诚、护主、重感情',w:{wrm:2,pat:1}},
+ {t:'鹰，高傲、敏锐、目标明确',w:{amb:2,show:1}}]}
+];
 
+// ===== 业务逻辑 =====
+let cur = 0;
+let answers = [];
+let scores = {amb:0,pat:0,rth:0,wrm:0,wit:0,ease:0,risk:0,show:0};
+let userGender = 'm';
 
-   
+const $ = id => document.getElementById(id);
+const views = document.querySelectorAll('.view');
 
- 
+function showView(id){
+  views.forEach(v => v.classList.remove('on'));
+  $(id).classList.add('on');
+}
+
+function renderStrip(){
+  const strip = $('strip');
+  strip.innerHTML = '';
+  for(let i=0;i<30;i++){
+    const s = document.createElement('span');
+    if(i < cur) s.classList.add('f');
+    strip.appendChild(s);
+  }
+}
+
+function renderQ(){
+  if(cur >= QS.length){
+    startGacha();
+    return;
+  }
+  const q = QS[cur];
+  $('epNow').innerText = cur+1;
+  $('qNo').innerText = 'SCENE ' + String(cur+1).padStart(2,'0');
+  $('qText').innerText = q.q;
+  $('qLead').innerText = q.l;
+  renderStrip();
+  const opts = $('opts');
+  opts.innerHTML = '';
+  q.opts.forEach((o,i) => {
+    const div = document.createElement('div');
+    div.className = 'opt';
+    div.innerHTML = `<div class="idx">${'ABCD'[i]}</div><div class="txt">${o.t}</div>`;
+    div.onclick = () => choose(o, div);
+    opts.appendChild(div);
+  });
+  $('backBtn').disabled = cur === 0;
+}
+
+function choose(o, el){
+  document.querySelectorAll('.opt').forEach(x => x.classList.remove('chosen'));
+  el.classList.add('chosen');
+  if(o.g) userGender = o.g;
+  if(o.w){
+    for(let k in o.w){
+      scores[k] = (scores[k]||0) + o.w[k];
+    }
+  }
+  answers.push(o);
+  setTimeout(() => {
+    cur++;
+    renderQ();
+  }, 200);
+}
+
+$('backBtn').onclick = () => {
+  if(cur === 0) return;
+  cur--;
+  const last = answers.pop();
+  if(last && last.w){
+    for(let k in last.w){
+      scores[k] -= last.w[k];
+    }
+  }
+  renderQ();
+};
+
+function matchRole(){
+  let best = null;
+  let bestScore = -1;
+  ROLES.forEach(r => {
+    if(r.g && r.g !== userGender) return;
+    let s = 0;
+    for(let k in r.prof){
+      const diff = Math.abs((scores[k]||0) - r.prof[k]);
+      s += 10 - diff;
+    }
+    if(s > bestScore){
+      bestScore = s;
+      best = r;
+    }
+  });
+  return best || ROLES[0];
+}
+
+function startGacha(){
+  showView('vGacha');
+  $('rays').classList.add('on');
+  $('gStage').innerText = '读取你的三十次选择';
+  const reel = $('reel');
+  const names = ROLES.map(r => r.name);
+  let i = 0;
+  const timer = setInterval(() => {
+    reel.innerText = names[i % names.length];
+    i++;
+  }, 80);
+  setTimeout(() => {
+    clearInterval(timer);
+    const role = matchRole();
+    reel.innerText = role.name;
+    reel.classList.add('hit');
+    $('rarity').innerText = role.rarity;
+    $('faceImg').src = IMG[role.id];
+    $('flare').classList.add('on');
+    setTimeout(() => {
+      $('card3d').classList.add('flip');
+      setTimeout(() => {
+        $('toResult').classList.remove('hidden');
+      }, 800);
+    }, 400);
+  }, 2000);
+}
+
+$('toResult').onclick = () => {
+  const role = matchRole();
+  $('rBadge').innerText = role.rarity;
+  $('rImg').src = IMG[role.id];
+  $('rName').innerText = role.name;
+  $('rPos').innerText = role.pos;
+  $('rSetting').innerText = role.setting;
+  $('rEnding').innerText = role.ending;
+  $('rLine').innerText = role.line;
+  const tags = $('rTags');
+  tags.innerHTML = '';
+  role.tags.forEach(t => {
+    const s = document.createElement('span');
+    s.innerText = t;
+    tags.appendChild(s);
+  });
+  const acts = $('rActs');
+  acts.innerHTML = '';
+  role.acts.forEach((a,i) => {
+    const div = document.createElement('div');
+    div.className = 'act';
+    div.innerHTML = `<div class="dot">${i+1}</div><div class="body">${a}</div>`;
+    acts.appendChild(div);
+  });
+  const others = $('rOthers');
+  others.innerHTML = '';
+  ROLES.filter(r => r.id !== role.id).slice(0,4).forEach(r => {
+    const img = document.createElement('img');
+    img.src = IMG[r.id];
+    img.alt = r.name;
+    others.appendChild(img);
+  });
+  showView('vResult');
+};
+
+$('startBtn').onclick = () => {
+  cur = 0;
+  answers = [];
+  scores = {amb:0,pat:0,rth:0,wrm:0,wit:0,ease:0,risk:0,show:0};
+  showView('vQuiz');
+  renderQ();
+};
+
+$('againBtn').onclick = () => {
+  cur = 0;
+  answers = [];
+  scores = {amb:0,pat:0,rth:0,wrm:0,wit:0,ease:0,risk:0,show:0};
+  $('card3d').classList.remove('flip');
+  $('rays').classList.remove('on');
+  $('flare').classList.remove('on');
+  $('reel').classList.remove('hit');
+  $('toResult').classList.add('hidden');
+  showView('vCover');
+};
+
+$('homeBtn').onclick = () => {
+  showView('vCover');
+};
+
+$('copyBtn').onclick = () => {
+  const role = matchRole();
+  const text = `【红果短剧试镜结果】\n你的角色：${role.name}\n定位：${role.pos}\n标签：${role.tags.join('、')}\n\n人物设定：${role.setting}\n\n专属台词：${role.line}\n\n结局：${role.ending}`;
+  navigator.clipboard.writeText(text).then(() => {
+    $('copyTip').innerText = '已复制，去闲鱼/朋友圈分享吧';
+    setTimeout(() => $('copyTip').innerText = '', 2000);
+  });
+};
+
+// 音效开关
+let soundOn = true;
+$('muteBtn').onclick = () => {
+  soundOn = !soundOn;
+  if(soundOn){
+    $('muteBtn').classList.remove('off');
+    $('muteBtn').innerHTML = '<i></i>音 效 开';
+  }else{
+    $('muteBtn').classList.add('off');
+    $('muteBtn').innerHTML = '<i></i>音 效 关';
+  }
+};
+
+// 分享图弹窗
+$('shareBtn').onclick = () => {
+  $('shareModal').classList.add('on');
+  const role = matchRole();
+  $('shareImg').src = $('rImg').src;
+};
+$('shareClose').onclick = () => {
+  $('shareModal').classList.remove('on');
+};
+
+renderQ();
+</script>
+
+<!-- 卡密验证JS -->
+<script>
+const validKeys = ["a001","a002","a003","a004","a005","a006","a007","a008","a009","a010"];
+const passInput = document.getElementById("passInput");
+const submitPass = document.getElementById("submitPass");
+const tip = document.getElementById("tip");
+const passPage = document.getElementById("passPage");
+const mainApp = document.getElementById("mainApp");
+
+window.addEventListener('load', function(){
+  if(localStorage.getItem("hasPassed") === "yes"){
+    passPage.style.display = "none";
+    mainApp.style.display = "block";
+  }
+});
+submitPass.onclick = function(){
+  let k = passInput.value.trim();
+  if(!k){
+    tip.innerText = "请输入卡密";
+    return;
+  }
+  if(validKeys.includes(k)){
+    localStorage.setItem("hasPassed", "yes");
+    passPage.style.display = "none";
+    mainApp.style.display = "block";
+  }else{
+    tip.innerText = "卡密错误，请核对后重新输入";
+  }
+};
+passInput.onkeydown = function(e){
+  if(e.key === "Enter") submitPass.click();
+};
+</script>
+
+</div>
+</body>
+</html>
