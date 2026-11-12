@@ -835,6 +835,7 @@ function renderQ(){
 }
 
 function choose(o, el){
+  clickSound();
   document.querySelectorAll('.opt').forEach(x => x.classList.remove('chosen'));
   el.classList.add('chosen');
   if(o.g) userGender = o.g;
@@ -901,8 +902,10 @@ function startGacha(){
     $('flare').classList.add('on');
     setTimeout(() => {
       $('card3d').classList.add('flip');
+      flipSound();
       setTimeout(() => {
         $('toResult').classList.remove('hidden');
+        revealSound();
       }, 800);
     }, 400);
   }, 2000);
@@ -944,6 +947,7 @@ $('toResult').onclick = () => {
 };
 
 $('startBtn').onclick = () => {
+  clickSound();
   cur = 0;
   answers = [];
   scores = {amb:0,pat:0,rth:0,wrm:0,wit:0,ease:0,risk:0,show:0};
@@ -976,8 +980,39 @@ $('copyBtn').onclick = () => {
   });
 };
 
-// 音效开关
+// 音效系统（Web Audio生成，无需外部文件）
+let audioCtx = null;
 let soundOn = true;
+
+function playTone(freq, duration = 0.1, type = 'sine', volume = 0.3) {
+  if (!soundOn) return;
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.frequency.value = freq;
+    osc.type = type;
+    gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+    osc.start(audioCtx.currentTime);
+    osc.stop(audioCtx.currentTime + duration);
+  } catch(e) {}
+}
+
+function clickSound() { playTone(600, 0.08, 'sine', 0.2); }
+function flipSound() { 
+  playTone(400, 0.1, 'triangle', 0.3);
+  setTimeout(() => playTone(800, 0.15, 'triangle', 0.3), 100);
+}
+function revealSound() {
+  playTone(500, 0.1, 'sine', 0.3);
+  setTimeout(() => playTone(700, 0.1, 'sine', 0.3), 120);
+  setTimeout(() => playTone(1000, 0.2, 'sine', 0.3), 240);
+}
+
+// 音效开关
 $('muteBtn').onclick = () => {
   soundOn = !soundOn;
   if(soundOn){
@@ -991,11 +1026,13 @@ $('muteBtn').onclick = () => {
 
 // 分享图弹窗
 $('shareBtn').onclick = () => {
+  clickSound();
   $('shareModal').classList.add('on');
   const role = matchRole();
   $('shareImg').src = $('rImg').src;
 };
 $('shareClose').onclick = () => {
+  clickSound();
   $('shareModal').classList.remove('on');
 };
 
